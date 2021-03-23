@@ -52,31 +52,12 @@ class AuroDropdown extends LitElement {
     `;
   }
 
-  /**
-  * @private Internal method for managing buildless environment variable
-  * @returns {Void} Fires an update lifecycle.
-  */
-  patchBuildless() {
-    // patch for buildless environments
-    const code = 'var process = {env: {}};',
-      script = document.createElement('script');
-
-    script.type = 'text/javascript';
-    try {
-      script.appendChild(document.createTextNode(code));
-    } catch (err) {
-      script.text = code;
-    }
-
-    return script;
-  }
-
   firstUpdated() {
     this.trigger = this.shadowRoot.querySelector(`#auro-input`);
     this.popover = this.shadowRoot.querySelector('#popover');
     this.popper = new Popover(this.trigger, this.popover, this.placement);
 
-    // NOTE: this code is currently not in scope for the ticket
+    // NOTE: will be implemented later
     /*
     const elOptionHandleKeypress = (evt, options, i) => {
       console.log("elOptionHandleKeypress()", "evt.key", evt.key);
@@ -91,49 +72,17 @@ class AuroDropdown extends LitElement {
     */
 
     // BRENT better name
-    const actionToggle = () => {
-      if (this.isPopoverVisible) {
-        this.toggleHide();
-
-        // for any tabbable elements in the list of options, remove their tabindex attribute so that they are not tabbable anymore
-        // NOTE: the code for doing so is currently not in scope for the ticket
-        /*
-        let options = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
-        for (let i = 0; i < options.length; i++) {
-          options[i].removeAttribute('tabindex');
-          // TODO remove the event listener, if possible. Remember, only non-anonymous functions can be removed, because you need to provide both handler type and the name of the function to remove.
-        }
-        */
-      } else {
-        this.toggleShow();
-
-        // make each option tabbable
-        // NOTE: the code for doing so is currently not in scope for the ticket
-        /*
-        let options = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
-        for (let i = 0; i < options.length; i++) {
-          options[i].setAttribute('tabindex', '0')
-          if (options[i].hasAttribute("hasKeypressListener") === false) {
-            options[i].addEventListener('keypress', () => elOptionHandleKeypress(event, options, i));
-            options[i].setAttribute("hasKeypressListener", "true")
-            }
-        }
-        options[0].focus();
-        */
-      }
-    },
-
+    const
       // if user clicks on <auro-dropdown>
       handleThisClick = () => {
-        actionToggle();
+        this.toggleVisibility();
       },
-
       // if a keypress happens while the <auro-dropdown> has focus
       handleThisKeyPress = (event) => {
 
         // is user presses a key that will toggle the list of options container visible or invisible
         if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === ' ') {
-          actionToggle();
+          this.toggleVisibility();
         }
 
         if (event.key.toLowerCase() === 'escape') {
@@ -188,7 +137,7 @@ class AuroDropdown extends LitElement {
     * @private Shows the popover if it is currently hidden and vice-versa.
     * @returns {Void} Fires an update lifecycle.
   */
-  toggle() {
+  toggleVisibility() {
     if (this.isPopoverVisible) {
       this.toggleHide();
     } else {
@@ -204,6 +153,16 @@ class AuroDropdown extends LitElement {
     this.popover.removeAttribute('data-show');
     this.popper.hide();
     this.isPopoverVisible = false;
+
+    // for any tabbable elements in the list of options, remove their tabindex attribute so that they are not tabbable anymore
+    // NOTE: the code for doing so is currently not in scope for the ticket
+    /*
+    let options = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
+    for (let i = 0; i < options.length; i++) {
+      options[i].removeAttribute('tabindex');
+      // TODO remove the event listener, if possible. Remember, only non-anonymous functions can be removed, because you need to provide both handler type and the name of the function to remove.
+    }
+    */
   }
 
   /**
@@ -215,13 +174,26 @@ class AuroDropdown extends LitElement {
     this.popover.setAttribute('data-show', '');
     this.popper.show();
     this.isPopoverVisible = true;
+
+    // make each option tabbable
+    // NOTE: the code for doing so is currently not in scope for the ticket
+    /*
+    let options = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
+    for (let i = 0; i < options.length; i++) {
+      options[i].setAttribute('tabindex', '0')
+      if (options[i].hasAttribute("hasKeypressListener") === false) {
+        options[i].addEventListener('keypress', () => elOptionHandleKeypress(event, options, i));
+        options[i].setAttribute("hasKeypressListener", "true")
+        }
+    }
+    options[0].focus();
+    */
   }
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <auro-input tabindex="0" id="auro-input" label="the label text" helptext="the help text"
-        value="the value"></auro-input>
+      <auro-input tabindex="0" id="auro-input" label="the label text" helptext="the help text" value="the value"></auro-input>
       <div id="popover" class="popover" style=${`width: ${this.inputFieldPixelWidth}px;`}>
         <slot name="optionsContainer"></slot>
       </div>
