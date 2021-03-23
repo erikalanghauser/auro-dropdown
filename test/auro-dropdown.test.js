@@ -1,5 +1,4 @@
-import { fixture, html, expect, waitUntil, elementUpdated } from '@open-wc/testing';
-import sinon from 'sinon';
+import { fixture, html, expect } from '@open-wc/testing';
 import '../src/auro-dropdown.js';
 
 describe('auro-dropdown', () => {
