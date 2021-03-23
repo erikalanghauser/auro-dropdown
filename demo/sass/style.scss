@@ -178,40 +178,8 @@ th, td {
   padding: var(--auro-size-md);
 }
 
-
-
-
-:focus {
-  background: yellow;
-  border: 2px dashed blue;
-}
-
-div {
-  margin: 16px 0;
-}
-
-textarea {
-  width: 500px;
-}
-
-button {
-  margin: 16px 0;
-  display: block;
-}
-
-
-#wtf {
-  border: 3px solid yellow;
-  margin: 20px;
-}
-
-:focus {
+// helps to distinguish which element on page has focus
+button:focus {
   background: orange;
   border: 2px dashed black;
-}
-
-.manualFocus {
-  background: grey;
-  border: 2px dashed purple;
-
 }

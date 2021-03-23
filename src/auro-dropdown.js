@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2021 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
@@ -13,13 +13,11 @@ import styleCss from "./style-css.js";
 import Popover from "./popover";
 
 /**
- * Popover attaches to an element and displays on hover/blur.
+ * Auro-dropdown is an element that should be used in situations where users may select one option from a pre-defined list of options, or select one option from an auto-complete interface. It resembles a <select> HTML element.
  *
  * @attr {String} placement - Expects top/bottom - position for popover in relation to the element.
- * @attr {String} for - Defines an `id` for an element in the DOM to trigger on hover/blur.
  * @attr {boolean} isPopoverVisible - Boolean for if popover is visible or not.
- * @slot - Default unnamed slot for the use of popover content
- * @slot trigger - Slot for entering the trigger element into the scope of the shadow DOM
+ * @slot optionsContainer - Slot for the content that will be inside of the popover.
  */
 class AuroDropdown extends LitElement {
   constructor() {
@@ -42,16 +40,15 @@ class AuroDropdown extends LitElement {
   static get properties() {
     return {
       placement: { type: String },
-      for: { type: String },
       inputFieldText: { type: String },
       inputFieldValue: { type: String },
-      inputPixelWidth: { type: Number }
+      inputFieldPixelWidth: { type: Number }
     };
   }
 
   static get styles() {
     return css`
-      ${styleCss},
+      ${styleCss}
     `;
   }
 
@@ -93,6 +90,7 @@ class AuroDropdown extends LitElement {
     }
     */
 
+    // BRENT better name
     const actionToggle = () => {
       if (this.isPopoverVisible) {
         this.toggleHide();
@@ -187,6 +185,7 @@ class AuroDropdown extends LitElement {
   }
 
   /**
+    * @private Shows the popover if it is currently hidden and vice-versa.
     * @returns {Void} Fires an update lifecycle.
   */
   toggle() {
@@ -212,7 +211,7 @@ class AuroDropdown extends LitElement {
    * @returns {Void} Fires an update lifecycle.
    */
   toggleShow() {
-    this.inputPixelWidth = this.getBoundingClientRect().width;
+    this.inputFieldPixelWidth = this.getBoundingClientRect().width;
     this.popover.setAttribute('data-show', '');
     this.popper.show();
     this.isPopoverVisible = true;
@@ -221,10 +220,9 @@ class AuroDropdown extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <auro-input slot="trigger" tabindex="0" id="auro-input" label="the label text" helptext="the help text"
+      <auro-input tabindex="0" id="auro-input" label="the label text" helptext="the help text"
         value="the value"></auro-input>
-      
-      <div id="popover" class="popover" style=${`width: ${this.inputPixelWidth}px;`}>
+      <div id="popover" class="popover" style=${`width: ${this.inputFieldPixelWidth}px;`}>
         <slot name="optionsContainer"></slot>
       </div>
     `;

@@ -1,6 +1,6 @@
 # auro-dropdown
 
-Popover attaches to an element and displays on hover/blur.
+Auro-dropdown is an element that should be used in situations where users may select one option from a pre-defined list of options, or select one option from an auto-complete interface. It resembles a <select> HTML element.
 
 ## Attributes
 
@@ -10,23 +10,15 @@ Popover attaches to an element and displays on hover/blur.
 
 ## Properties
 
-| Property          | Attribute         | Type     | Default  | Description                                      |
-|-------------------|-------------------|----------|----------|--------------------------------------------------|
-| `for`             | `for`             | `String` |          | Defines an `id` for an element in the DOM to trigger on hover/blur. |
-| `inputFieldText`  | `inputFieldText`  | `string` |          |                                                  |
-| `inputFieldValue` | `inputFieldValue` | `string` |          |                                                  |
-| `inputPixelWidth` | `inputPixelWidth` | `number` |          |                                                  |
-| `placement`       | `placement`       | `String` | "bottom" | Expects top/bottom - position for popover in relation to the element. |
-
-## Methods
-
-| Method   | Type       |
-|----------|------------|
-| `toggle` | `(): Void` |
+| Property               | Attribute              | Type     | Default  | Description                                      |
+|------------------------|------------------------|----------|----------|--------------------------------------------------|
+| `inputFieldPixelWidth` | `inputFieldPixelWidth` | `number` |          |                                                  |
+| `inputFieldText`       | `inputFieldText`       | `string` |          |                                                  |
+| `inputFieldValue`      | `inputFieldValue`      | `string` |          |                                                  |
+| `placement`            | `placement`            | `String` | "bottom" | Expects top/bottom - position for popover in relation to the element. |
 
 ## Slots
 
-| Name      | Description                                      |
-|-----------|--------------------------------------------------|
-|           | Default unnamed slot for the use of popover content |
-| `trigger` | Slot for entering the trigger element into the scope of the shadow DOM |
+| Name               | Description                                      |
+|--------------------|--------------------------------------------------|
+| `optionsContainer` | Slot for the content that will be inside of the popover. |

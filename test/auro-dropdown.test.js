@@ -6,7 +6,7 @@ describe('auro-dropdown', () => {
   it('clicking the auro-dropdown when it\`s closed will open the options container', async () => {
     const el = await fixture(html`
       <auro-dropdown>
-        <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
       </auro-dropdown>
     `);
 
@@ -21,7 +21,7 @@ describe('auro-dropdown', () => {
   it('clicking the auro-dropdown when it\`s open will close the options container', async () => {
     const el = await fixture(html`
     <auro-dropdown>
-      <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+      <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
     </auro-dropdown>
   `);
 
@@ -39,7 +39,7 @@ describe('auro-dropdown', () => {
   it('pressing a non-eligible button while the auro-dropdown has focus will NOT toggle the open/close state of the options container', async () => {
     const el = await fixture(html`
       <auro-dropdown>
-        <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
       </auro-dropdown>
     `);
 
@@ -54,7 +54,7 @@ describe('auro-dropdown', () => {
   it('pressing the Enter button while the auro-dropdown has focus will toggle the open/close state of the options container', async () => {
     const el = await fixture(html`
       <auro-dropdown>
-        <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
       </auro-dropdown>
     `);
 
@@ -72,7 +72,7 @@ describe('auro-dropdown', () => {
   it('pressing the Space button while the auro-dropdown has focus will toggle the open/close state of the options container', async () => {
     const el = await fixture(html`
       <auro-dropdown>
-        <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
       </auro-dropdown>
     `);
 
@@ -91,7 +91,7 @@ describe('auro-dropdown', () => {
     const el = await fixture(html`
       <button id="decoyButton1">decoy button 1</button>
       <auro-dropdown>
-        <div slot="blah" style="display: inline-block; width: 500px;">content for dropdown</div>
+        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
       </auro-dropdown>
       <button id="decoyButton1">decoy button 1</button>
     `);
