@@ -18,14 +18,17 @@ $auro-inset-directions:'';
 @import "./node_modules/@alaskaairux/webcorestylesheets/dist/utilityMixins/insetUtility";
 
 ::slotted(*:hover) {
-  cursor: pointer;
+  cursor: pointer; // change this so that it's only on option elements
 }
 
 .popover {
   border-radius: var(--auro-border-radius);
-  // background: var(--auro-color-background-lightest);
+  border: 1px solid #F7F7F7;
+  background: var(--auro-color-background-lightest);
+
   box-shadow: -2px 0px 5px 2px rgba(0, 0, 0, 0.08),
     0px 2px 5px 1px rgba(0, 0, 0, 0.08);
+
   display: inline-block;
 
   &:not([data-show]){
@@ -38,63 +41,4 @@ $auro-inset-directions:'';
     padding: var(--auro-size-xs);
   }
 
-}
-
-.popover[data-popper-placement^="top"] > .arrow {
-  bottom: -10px;
-
-  &:before {
-    transform: rotate(45deg);
-    top: -16px;
-    left: -6px;
-  }
-}
-
-.popover[data-popper-placement^="bottom"] > .arrow {
-  top: -10px;
-
-  &:before {
-    transform: rotate(-135deg);
-    top: 4px;
-    right: -6px;
-  }
-}
-
-.arrow {
-  position: relative;
-  margin-top: -var(--auro-size-xs);
-
-  &:before {
-    content: '';
-    position: absolute;
-    background: var(--auro-color-base-white);
-    box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.08);
-    width: 12px;
-    height: 12px;
-  }
-}
-
-
-// Support for auroElement styles
-// @import "./node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement";
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
-
-// layout styles - define any layout specifications for UI that is contained WITHIN the component
-// never define layout that would cause effect on element outside the scope of this component
-
-
-// component shape styles
-// .auro-dropdown {
-//   ...
-// }
-
-.testClass { // TODO testClass
-  color:  var(--auro-color-border-error-on-light);
-  border: 1px solid var(--auro-color-border-error-on-light);
-  display: inline-block;
-  padding: var(--auro-text-body-size-default);
 }
