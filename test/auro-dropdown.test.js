@@ -2,91 +2,74 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../src/auro-dropdown.js';
 
 describe('auro-dropdown', () => {
+
+
   it('clicking the auro-dropdown when it\`s closed will open the options container', async () => {
-    const el = await fixture(html`
-      <auro-dropdown>
-        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
-      </auro-dropdown>
-    `);
+    const el = await generateDefaultFixture();
 
     const popover = el.shadowRoot.querySelector('#popover');
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
 
     el.click();
 
-    expect(popover.hasAttribute('data-show')).to.equal(true);
+    expectPopoverShown(popover);
   });
 
   it('clicking the auro-dropdown when it\`s open will close the options container', async () => {
-    const el = await fixture(html`
-    <auro-dropdown>
-      <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
-    </auro-dropdown>
-  `);
+    const el = await generateDefaultFixture();
 
     const popover = el.shadowRoot.querySelector('#popover');
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
 
     el.click();
 
-    expect(popover.hasAttribute('data-show')).to.equal(true);
+    expectPopoverShown(popover);
 
     el.click();
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
   });
 
   it('pressing a non-eligible button while the auro-dropdown has focus will NOT toggle the open/close state of the options container', async () => {
-    const el = await fixture(html`
-      <auro-dropdown>
-        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
-      </auro-dropdown>
-    `);
+    const el = await generateDefaultFixture();
 
     const popover = el.shadowRoot.querySelector('#popover');
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
 
     el.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'a' }));
 
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
   });
 
   it('pressing the Enter button while the auro-dropdown has focus will toggle the open/close state of the options container', async () => {
-    const el = await fixture(html`
-      <auro-dropdown>
-        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
-      </auro-dropdown>
-    `);
+    const el = await generateDefaultFixture();
 
     const popover = el.shadowRoot.querySelector('#popover');
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
 
     el.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 
-    expect(popover.hasAttribute('data-show')).to.equal(true);
+    expectPopoverShown(popover);
 
     el.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
   });
 
   it('pressing the Space button while the auro-dropdown has focus will toggle the open/close state of the options container', async () => {
-    const el = await fixture(html`
-      <auro-dropdown>
-        <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
-      </auro-dropdown>
-    `);
+    const el = await generateDefaultFixture();
 
     const popover = el.shadowRoot.querySelector('#popover');
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
 
     el.dispatchEvent(new KeyboardEvent('keydown', { 'key': ' ' }));
 
-    expect(popover.hasAttribute('data-show')).to.equal(true);
+    expectPopoverShown(popover);
 
     el.dispatchEvent(new KeyboardEvent('keydown', { 'key': ' ' }));
-    expect(popover.hasAttribute('data-show')).to.equal(false);
+    expectPopoverHidden(popover);
   });
 
   it('the auro-dropdown is tabbable', async () => {
+    // The generateDefaultFixture() is not this version, with 2 buttons, because for some reason the el only contains the first <button>. I don't know why.
     const el = await fixture(html`
       <button id="decoyButton1">decoy button 1</button>
       <auro-dropdown>
@@ -96,7 +79,7 @@ describe('auro-dropdown', () => {
     `);
 
     expect(document.querySelector('auro-dropdown').shadowRoot.querySelector('auro-input').getAttribute('tabindex') === "0").to.equal(true);
-  
+
     /*
     BRENT: I tried to do an elaborate interaction sequence of click button 1, tab onto auro-dropdown, press Enter,
     tab off of auro-dropdown...but I can't get it to work.
@@ -116,3 +99,19 @@ describe('auro-dropdown', () => {
   });
 
 });
+
+async function generateDefaultFixture() {
+  return await fixture(html`
+    <auro-dropdown>
+      <div slot="optionsContainer" style="display: inline-block; width: 500px;">content for dropdown</div>
+    </auro-dropdown>
+  `);
+}
+
+function expectPopoverShown(el) {
+  expect(el.hasAttribute('data-show')).to.equal(true);
+}
+
+function expectPopoverHidden(el) {
+  expect(el.hasAttribute('data-show')).to.equal(false);
+}
