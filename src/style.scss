@@ -6,9 +6,74 @@
 // Import Auro tokens
 @import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
 @import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
+@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariableMap";
 
 @import "./node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
 @import "./node_modules/@alaskaairux/webcorestylesheets/dist/core";
+
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/utilityClasses/displayProperties";
+
+$auro-inset-spacing-options: lg;
+$auro-inset-directions:'';
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/utilityMixins/insetUtility";
+
+::slotted(*:hover) {
+  cursor: pointer;
+}
+
+.popover {
+  border-radius: var(--auro-border-radius);
+  // background: var(--auro-color-background-lightest);
+  box-shadow: -2px 0px 5px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 5px 1px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+
+  &:not([data-show]){
+    @extend .util_displayHiddenVisually;
+  }
+
+  &[data-show] {
+    z-index: var(--auro-depth-tooltip);
+    background-color: var(--auro-color-background-lightest);
+    padding: var(--auro-size-xs);
+  }
+
+}
+
+.popover[data-popper-placement^="top"] > .arrow {
+  bottom: -10px;
+
+  &:before {
+    transform: rotate(45deg);
+    top: -16px;
+    left: -6px;
+  }
+}
+
+.popover[data-popper-placement^="bottom"] > .arrow {
+  top: -10px;
+
+  &:before {
+    transform: rotate(-135deg);
+    top: 4px;
+    right: -6px;
+  }
+}
+
+.arrow {
+  position: relative;
+  margin-top: -var(--auro-size-xs);
+
+  &:before {
+    content: '';
+    position: absolute;
+    background: var(--auro-color-base-white);
+    box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.08);
+    width: 12px;
+    height: 12px;
+  }
+}
+
 
 // Support for auroElement styles
 // @import "./node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement";
@@ -33,3 +98,68 @@
   display: inline-block;
   padding: var(--auro-text-body-size-default);
 }
+
+#container-dropdown {
+  .trigger {
+    color: black;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px 5px 10px 5px;
+    cursor: pointer;
+  }
+
+  .trigger--isFocused {
+    border: 3px solid blue;
+  }
+
+  .optionsList {
+    color: black;
+    background-color: white;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 3px;
+    // display: inline-block;
+    padding: 10px 5px 10px 5px;
+    cursor: pointer;
+    // border-left: 2px solid var(--auro-color-brand-breeze-100);
+    // border-bottom: 1px solid var(--auro-color-border-primary-on-light);
+    // overflow: hidden;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    // transition: all 0.5s ease-in-out;
+    // transition-property: opacity, height, visibility;
+  
+    // &-slot {
+    //   padding: var(--auro-size-xl);
+    // }
+
+    position: absolute;
+    z-index: 999;
+  }
+
+  .optionsList--isOpen {
+    opacity: 1;
+    height: auto;
+    visibility: visible;
+  }
+
+
+  #optionListContainer {
+    border: 2px dotted blue;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

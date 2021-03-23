@@ -1,31 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auro Web Component Generator | auro-dropdown custom element</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/prismjs@latest/themes/prism.css"
-    />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-  </head>
-  <body>
-    <main></main>
 
-    <script type="module">
-      import 'https://unpkg.com/marked@latest/marked.min.js';
-      import 'https://unpkg.com/prismjs@latest/prism.js';
-      fetch('/demo/demo.md')
-        .then((response) => response.text())
-        .then((text) => {
-          const rawHtml = marked(text);
-          document.querySelector('main').innerHTML = rawHtml;
-          Prism.highlightAll();
-        });
-    </script>
-    <script type="module" src="../src/auro-dropdown.js"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auro Web Component Generator | auro-dropdown custom element</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@latest/themes/prism.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</head>
+
+<style type="text/css">
+.otherTabbableElements {
+  padding: 10px;
+  border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;}
+
+.sectionTitle {
+  padding: 10px;
+  margin: 0px;
+  background-color: rgb(199, 199, 199);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+  #aboveElements {
+    background-color: #37afff;
+    margin: 0px;
+
+  }
+
+  #belowElements {
+    background-color: #888630;
+    margin: 0px;
+
+  }
+
+  #auroDropdownSection {
+    background-color: #FFFFFF;
+    margin: 0px;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+  }
+
+  #debugContainer {
+    display: inline-block;
+    width: 250px;
+    background-color: rgb(235, 233, 233);
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    /* right: 20; */
+    filter: drop-shadow(5px 5px 4px #666666);
+  }
+</style>
+
+<body>
+  <main></main>
+
+  <script type="module">
+    import 'https://unpkg.com/marked@latest/marked.min.js';
+    import 'https://unpkg.com/prismjs@latest/prism.js';
+    fetch('/demo/demo.md')
+      .then((response) => response.text())
+      .then((text) => {
+        const rawHtml = marked(text);
+        document.querySelector('main').innerHTML = rawHtml;
+        Prism.highlightAll();
+      });
+
+  </script>
+  <script type="module" src="../src/auro-dropdown.js"></script>
+  <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js"
+    type="module"></script>
+</body>
+
 </html>

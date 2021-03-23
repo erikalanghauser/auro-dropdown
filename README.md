@@ -1,6 +1,6 @@
 # auro-dropdown
 
-`<auro-dropdown>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+`<auro-dropdown>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for use in situations where users may select one option from a pre-defined list of options, or select one option from an auto-complete interface.
 
 ## UI development browser support
 
@@ -39,7 +39,15 @@ import "@alaskaairux/auro-dropdown";
 **Reference component in HTML**
 
 ```html
-<auro-dropdown>Hello World</auro-dropdown>
+  <auro-dropdown>
+    <div slot="optionsContainer">
+      <ul>
+        <li>value 1</li>
+        <li>value 2</li>
+        <li>value 3</li>
+      </ul>
+    </div>
+  </auro-dropdown>
 ```
 
 ## Install bundled assets from CDN

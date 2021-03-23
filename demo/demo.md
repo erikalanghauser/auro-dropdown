@@ -1,26 +1,33 @@
 # auro-dropdown
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis in tellus nec pellentesque. Integer bibendum ligula sit amet vehicula gravida. Maecenas accumsan, ligula vitae molestie iaculis, tellus mi laoreet ex [install instructions](https://auro.alaskaair.com/components/auro/button/install), ac malesuada velit dolor vel mi. Cras et rutrum urna. Sed mattis mi eu tortor ullamcorper, egestas bibendum mauris cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra eros eget neque commodo vulputate. In tempus eu velit at dictum.
-
-Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
-
 ## auro-dropdown use cases
 
 The `auro-dropdown` element should be used in situations where users may:
 
-* egestas bibendum mauris cursus
-* quis euismod felis mollis
-* consectetur ipsum risus sed tortor
+* select one option from a pre-defined list of options, in which case auro-dropdown will have auro-menu as a child
+* select one option from an auto-complete interface, in which case auro-dropdown will have auro-autocomplete as a child
 
-> Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam fermentum libero ipsum, ac tempor sapien blandit in. Nam tincidunt non felis molestie varius.
 
-|convallis|tristique|nisl dignissim|eleifend|
-|---|---|---|---|
-|√|√|||
-|||√|√|
 
 <div class="exampleWrapper">
-  <auro-dropdown cssClass="testClass">Hello World!</auro-dropdown>
+  <button tabindex="0">a tabbable button above auro-dropdown</button>
+
+  <auro-dropdown>
+    <div slot="optionsContainer" style="display: inline-block; width: 600px; border: 1px solid black; background-color: rgb(214, 214, 214); margin: 0;">
+      <ul>
+        <li>a generic list</li>
+        <li>this list is not an auro-component</li>
+        <li>it is just a ul</li>
+        <li>with some li's in it</li>
+        <li>you could put auro-menu in here</li>
+        <li>or auro-autocomplete</li>
+        <li>the padding separating this generic list from its container is var(--auro-size-xs)</li>
+      </ul>
+    </div>
+  </auro-dropdown>
+
+  <button tabindex="0">a tabbable button below auro-dropdown</button>
+
 </div>
 
 <auro-accordion lowProfile justifyRight>
@@ -31,26 +38,3 @@ The `auro-dropdown` element should be used in situations where users may:
   ```
 
 </auro-accordion>
-
-## Then there is more
-
-Aenean at blandit lorem. Fusce imperdiet mi nec gravida maximus. Quisque nisl libero, condimentum in nisi a, imperdiet lacinia arcu.
-
-```javascript
-toggleDialog = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = 'hidden';
-  dialog.removeAttribute("open");
-  dialog.setAttribute("open", true);
-}
-
-toggleDialogClose = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = '';
-  dialog.removeAttribute("open");
-}
-```

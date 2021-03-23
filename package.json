@@ -7,7 +7,7 @@
     "  3. Go to http://localhost:8000",
     "================================================================================"
   ],
-  "name": "@alaskaairux/auro-dropdown",
+  "name": "@aurolabs/auro-dropdown",
   "version": "0.0.0",
   "description": "Auro custom auro-dropdown element",
   "author": "Product design and research",
@@ -18,8 +18,10 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "lit-element": "^2.4.0",
-    "chalk": "^4.1.0"
+    "@alaskaairux/auro-input": "^1.2.0",
+    "@popperjs/core": "^2.9.1",
+    "chalk": "^4.1.0",
+    "lit-element": "^2.4.0"
   },
   "peerDependencies": {
     "@alaskaairux/design-tokens": "^3.0.0",
